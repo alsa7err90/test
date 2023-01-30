@@ -12,5 +12,8 @@ class Traveler extends Model
     {
         return $this->hasOne(Companion::class);
     }
-
+    public function accommodation()
+    {
+        return $this->hasOne(Accommodation::class);
+    }
 }

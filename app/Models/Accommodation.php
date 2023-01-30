@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Accommodation extends Model
 {
     use HasFactory;
+    
+    public function traveler()
+    {
+        return $this->belongsTo(Traveler::class);
+    }
 }
