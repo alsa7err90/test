@@ -16,7 +16,7 @@ class CreateTravelersTable extends Migration
         Schema::create('travelers', function (Blueprint $table) {
             $table->id();
             $table->string('mobile_no');
-            $table->string('country_code ');
+            $table->string('country_code');
             $table->string('otp_code');
             $table->string('first_name');
             $table->string('last_name');

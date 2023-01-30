@@ -15,7 +15,7 @@ class CreateCompanionsTable extends Migration
     {
         Schema::create('companions', function (Blueprint $table) {
             $table->id();
-            $table->string('traveler_id');
+            $table->integer('traveler_id')->unsigned();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('date_of_birth');
@@ -31,12 +31,13 @@ class CreateCompanionsTable extends Migration
             $table->string('visa_duration')->nullable();
             $table->enum('visa_status',['multiple','single']);
             $table->string('passport_picture');
-            $table->string('personal_picture');
-            $table->foreignId('traveler_id')
-            ->constrained()
+            $table->string('personal_picture'); 
+            $table->timestamps();
+            
+            $table->foreign('traveler_id')->references('id')->on('travelers') 
             ->onUpdate('cascade')
             ->onDelete('cascade');
-            $table->timestamps();
+            
         });
     }
 
