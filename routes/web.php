@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TravelerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', [TravelerController::class, 'index'])->name('home');
+Route::get('/', [TravelerController::class, 'passport'])->name('home');
+Route::get('/', [TravelerController::class, 'companions'])->name('home');
+Route::get('/', [TravelerController::class, 'index'])->name('home');
 
 Auth::routes();
 
