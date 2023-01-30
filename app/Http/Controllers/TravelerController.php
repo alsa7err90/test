@@ -12,19 +12,30 @@ class TravelerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(Request $request)
+    { 
+        $phone = $request->session()->get('phone');
+        return view('traveler.index',compact('phone') );
     }
 
+    public function phone_store(Request $request){
+        $validatedData = $request->validate([
+            'phone' => 'required',
+            
+        ]);
+        $request->session()->put('phone', $request->phone);
+       
+        return redirect('/passport');
+    }
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function passport(Request $request)
+    {   
+        $passport = $request->session()->get('passport'); 
+        return view('traveler.passport',compact('passport') );
     }
 
     /**
