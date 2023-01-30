@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Interfaces\PassportRepositoryInterface;
 use App\Models\Traveler;
 use Illuminate\Http\Request;
 
 class TravelerController extends Controller
 {
+    private PassportRepositoryInterface $passportRepository;
+
+    public function __construct(PassportRepositoryInterface $passportRepository) 
+    {
+        $this->passportRepository = $passportRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,13 +26,8 @@ class TravelerController extends Controller
         return view('traveler.index',compact('phone') );
     }
 
-    public function phone_store(Request $request){
-        $validatedData = $request->validate([
-            'phone' => 'required',
-            
-        ]);
-        $request->session()->put('phone', $request->phone);
-       
+    public function phone_store(Request $request){ 
+        $request->session()->put('phone', $request->phone); 
         return redirect('/passport');
     }
     /**
@@ -37,6 +40,25 @@ class TravelerController extends Controller
         $passport = $request->session()->get('passport'); 
         return view('traveler.passport',compact('passport') );
     }
+    
+    public function passport_store(Request $request){
+       
+        $validatedData = $request->validate([
+            'first_name' => 'required',
+           
+        ]);
+        $request2 =  $request->all(); 
+        if(empty($request->session()->get('passport'))){
+            $passport = new Traveler();
+            $passport->fill($request2);
+            $request->session()->put('passport', $passport);
+        }else{
+            $passport = $request->session()->get('passport');
+            $passport->fill($request2);
+            $request->session()->put('traveler', $passport);
+        } 
+        return redirect('/accommodation');
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -44,9 +66,10 @@ class TravelerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function accommodation(Request $request)
     {
-        //
+        $accommodation = $request->session()->get('accommodation');
+        return view('traveler.accommodation',compact('accommodation') );
     }
 
     /**

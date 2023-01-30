@@ -24,9 +24,7 @@ Route::post('/', [TravelerController::class, 'phone_store'])->name('phone.store'
 Route::get('/passport', [TravelerController::class, 'passport'])->name('passport');
 Route::post('/passport', [TravelerController::class, 'passport_store'])->name('passport.store');
 
-// Route::get('/companion', [TravelerController::class, 'companion'])->name('companion');
-// Route::post('/companion', [TravelerController::class, 'companion_store'])->name('companion.store');
-
+ 
 Route::get('/accommodation', [TravelerController::class, 'accommodation'])->name('accommodation');
 Route::post('/accommodation', [TravelerController::class, 'accommodation_store'])->name('accommodation.store');
 

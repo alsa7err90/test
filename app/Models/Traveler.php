@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Traveler extends Model
 {
     use HasFactory;
+    protected $guarded = [];
     public function companion()
     {
         return $this->hasOne(Companion::class);

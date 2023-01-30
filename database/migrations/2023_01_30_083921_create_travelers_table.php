@@ -23,9 +23,11 @@ class CreateTravelersTable extends Migration
             $table->string('date_of_birth');
             $table->enum('gender',['male','female']);
             $table->string('place_of_birth');
+            $table->string('country_of_residency');
             $table->string('passport_no');
             $table->string('issue_date');
-            $table->string('expiry_date');
+            $table->string('expiry_date'); 
+            
             $table->string('place_of_issue');
             $table->string('arrival_date');
             $table->string('profession')->nullable();
