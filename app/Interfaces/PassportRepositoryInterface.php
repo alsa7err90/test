@@ -3,8 +3,7 @@
 namespace App\Interfaces;
 
 interface PassportRepositoryInterface 
-{
-    public function getAllOrders();
-    public function getOrderById($orderId);
+{ 
+    public function store_passport($request);
     
 }

@@ -26,7 +26,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $models = array(
             'Passport'   
         );
-
+ 
         foreach ($models as $model) {
             $this->app->bind("App\Interfaces\\{$model}RepositoryInterface", "App\Repository\\{$model}Repository");
         }

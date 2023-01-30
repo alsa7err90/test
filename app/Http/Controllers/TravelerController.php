@@ -43,20 +43,16 @@ class TravelerController extends Controller
     
     public function passport_store(Request $request){
        
-        $validatedData = $request->validate([
-            'first_name' => 'required',
-           
-        ]);
-        $request2 =  $request->all(); 
-        if(empty($request->session()->get('passport'))){
-            $passport = new Traveler();
-            $passport->fill($request2);
-            $request->session()->put('passport', $passport);
-        }else{
-            $passport = $request->session()->get('passport');
-            $passport->fill($request2);
-            $request->session()->put('traveler', $passport);
+        
+        if($request->hasFile('personal_picture') &&$request->hasFile('passport_picture') )  {
+            $request =   uploadImage($request);  
+        }
+        else{
+            $request =  $request->all();
         } 
+
+    $this->passportRepository->store_passport($request ) ;
+      
         return redirect('/accommodation');
     }
 

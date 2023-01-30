@@ -3,7 +3,7 @@
 @section('content')
 <?php
 
-dd($passport); 
+// dd($passport); 
 ?>
     <div class="container">
         <div class="col-md-12 ">
@@ -42,9 +42,9 @@ dd($passport);
 
                             <div class="col-md-12 mb-3">
                                 <label for="validationTooltip03">Are you Traveling with companion (plus one)? </label>
-                                <input type="checkbox" id="companion" data-toggle="toggle" data-onlabel="Yes"
-                                    data-offlabel="No" data-onstyle="success" data-bs-toggle="collapse"
-                                    href="#collapseExample" role="button" aria-expanded="false"
+                                <input type="checkbox" name="companion" id="companion" data-toggle="toggle" data-onlabel="Yes"
+                                    data-offlabel="No"  data-onstyle="success" data-bs-toggle="collapse"
+                                    aria-expanded="false"
                                     aria-controls="collapseExample">
                                 <div class="invalid-feedback"> Please choose Date of birth .</div>
                                 <div class="valid-feedback"> {{ $success_check }} </div>

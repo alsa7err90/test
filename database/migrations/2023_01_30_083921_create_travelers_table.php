@@ -15,9 +15,7 @@ class CreateTravelersTable extends Migration
     {
         Schema::create('travelers', function (Blueprint $table) {
             $table->id();
-            $table->string('mobile_no');
-            $table->string('country_code');
-            $table->string('otp_code');
+            $table->string('mobile_no'); 
             $table->string('first_name');
             $table->string('last_name');
             $table->string('date_of_birth');
@@ -37,6 +35,8 @@ class CreateTravelersTable extends Migration
             $table->string('passport_picture');
             $table->string('personal_picture');
             $table->enum('companion',['yes','no']);
+            $table->enum('status',['pending','processing','completed']);
+            $table->string('note')->nullable();
              
             
             $table->timestamps();

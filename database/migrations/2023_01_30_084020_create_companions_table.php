@@ -21,6 +21,7 @@ class CreateCompanionsTable extends Migration
             $table->string('date_of_birth');
             $table->enum('gender',['male','female']);
             $table->string('place_of_birth');
+            $table->string('country_of_residency');
             $table->string('passport_no');
             $table->string('issue_date');
             $table->string('expiry_date');
@@ -33,7 +34,7 @@ class CreateCompanionsTable extends Migration
             $table->string('passport_picture');
             $table->string('personal_picture'); 
             $table->timestamps();
-            
+
             $table->foreign('traveler_id')->references('id')->on('travelers') 
             ->onUpdate('cascade')
             ->onDelete('cascade');

@@ -29,7 +29,7 @@
 <div class="row">
     <div class="col-md-4 mb-3">
         <label for="validationTooltip03"> Gender </label>
-        <select type="text" name="comp_date_of_birth" class="form-control comp_input"
+        <select type="text" name="comp_gender" class="form-control comp_input"
             id="validationTooltipUsername" >
             <option value="">select</option>
             <option value="male">Male</option>
