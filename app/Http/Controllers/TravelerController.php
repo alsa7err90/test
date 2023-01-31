@@ -58,8 +58,7 @@ class TravelerController extends Controller
             $request =   uploadImage($request);
         } else {
             $request =  $request->all();
-        }
-
+        } 
         $this->passportRepository->storePassport($request);
 
         return redirect('/accommodation');
@@ -104,14 +103,14 @@ class TravelerController extends Controller
 
     public function confirm_store()
     {
-        $email =  session()->get('email');
-        $details = [
-            'title' =>  'title',
-            'body' =>  "bodyxx"
-        ]; 
-        Mail::to($email)->send(
-            new ComplateTestMail($details)
-        );
+        // $email =  session()->get('email');
+        // $details = [
+        //     'title' =>  'title',
+        //     'body' =>  "bodyxx"
+        // ]; 
+        // Mail::to($email)->send(
+        //     new ComplateTestMail($details)
+        // );
         $storeConfirm =  $this->passportRepository->storeConfirm();
         if ($storeConfirm) return redirect('/finish');;
     }

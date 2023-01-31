@@ -19,9 +19,9 @@ class PassportRepository implements PassportRepositoryInterface
 
             $request['companion'] = "no";
         }
- 
-        $request['email'] =  session()->get('email');
         
+        $request['email'] =  session()->get('email');
+        session()->put('all_data_passport', $request);
         $request['mobile_no'] =  session()->get('phone');
         $passport = new Traveler();
         $passport->fill($request);
@@ -32,7 +32,7 @@ class PassportRepository implements PassportRepositoryInterface
 
     public function storeCompanion($request, $traveler)
     {
-
+        $request = session()->get('all_data_passport');
         $new_companion = new Companion();
         $new_companion->first_name  =  $request['comp_first_name'];
         $new_companion->last_name  =  $request['comp_last_name'];
@@ -67,10 +67,12 @@ class PassportRepository implements PassportRepositoryInterface
     public function storeConfirm()
     {
         $traveler = session()->get('passport'); 
+         
         $traveler->save(); 
+         
         if ($traveler['companion'] == "yes") {
             $this->storeCompanion(session()->get('passport'), $traveler);
-        }
+        } 
         $accommodation  = session()->get('accommodation');
         $new_accommodation = new Accommodation();
 

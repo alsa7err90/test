@@ -3,18 +3,37 @@
 
 function uploadImage($request)
 { 
-    $path_img = 'uploads';
-
-  $rand = quickRandom(8);
-  $rand2 = quickRandom(8);
-  $fileName_passport = $rand . '_' . time() . '.' . $request->passport_picture->extension();
-  $fileName_personal = $rand2 . '_' . time() . '.' . $request->personal_picture->extension();
-  $request->passport_picture->move(public_path($path_img), $fileName_passport);
-  $request->personal_picture->move(public_path($path_img), $fileName_personal);
   $data = $request->all();
-  $data['passport_picture'] = $fileName_passport;
-  $data['personal_picture'] = $fileName_personal;
+
+if(isset($request->passport_picture)){
+ $fileName =  uploadOne($request,'passport_picture');
+  $data['passport_picture'] = $fileName;
+}
+
+if(isset($request->personal_picture)){
+  $fileName = uploadOne($request,'personal_picture');
+  $data['personal_picture'] = $fileName;
+
+}
+
+if(isset($request->comp_passport_picture)){
+  $fileName = uploadOne($request,'comp_passport_picture');
+  $data['comp_passport_picture'] = $fileName;
+}
+
+if(isset($request->comp_personal_picture)){
+  $fileName = uploadOne($request,'comp_personal_picture');
+  $data['comp_personal_picture'] = $fileName;
+}
+ 
   return $data;
+}
+function uploadOne($request,$name){
+  $path_img = 'uploads';
+  $rand = quickRandom(8);
+  $fileName = $rand . '_' . time() . '.' . $request->$name->extension();
+  $request->$name->move(public_path($path_img), $fileName);
+  return $fileName;
 }
 
 function quickRandom($length = 16)

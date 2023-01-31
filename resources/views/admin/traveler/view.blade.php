@@ -35,10 +35,11 @@
                     <p> organization :  {{ $traveler->organization}} </p>
                     <p>visa_duration :  {{ $traveler->visa_duration}} </p>
                     <p>visa_status :  {{ $traveler->visa_status}} </p>
-                    <p>passport_picture :  {{ $traveler->passport_picture}} </p>
-                    <p>personal_picture :  {{ $traveler->personal_picture}} </p>
                     <p>companion :  {{ $traveler->companion}} </p>
                     <p>status :  {{ $traveler->status}} </p>
+                    <img src={{ asset('uploads/'.$traveler->passport_picture)}} width="200" >
+                    <img src={{ asset('uploads/'.$traveler->personal_picture)}} width="200" >
+           
                     
                     @if($traveler->companion == "yes")
                     <hr />
@@ -58,9 +59,10 @@
                     <p> organization :  {{ $traveler->organization}} </p>
                     <p>visa_duration :  {{ $traveler->visa_duration}} </p>
                     <p>visa_status :  {{ $traveler->visa_status}} </p>
-                    <p>passport_picture :  {{ $traveler->passport_picture}} </p>
-                    <p>personal_picture :  {{ $traveler->personal_picture}} </p>
-                    @endif
+                    <img src={{ asset('uploads/'.$traveler->passport_picture)}} width="200" >
+                    <img src={{ asset('uploads/'.$traveler->personal_picture)}} width="200" >
+            
+                     @endif
 
                     @if ($traveler->status == "pending")
                         <a href="{{ route('traveler.processing', $traveler->id) }}"
