@@ -1,55 +1,69 @@
 @extends('layouts.user')
 
 @section('content')
-    <div class="container">
-        <div class="col-md-12 ">
-            <div class="card">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-md-10">
-                            <h5>Please enter your mobile number </h5>
-                        </div>
-                        <div class="col-md-2">
-                            <a href="" class="btn btn-md btn-success float-right"><i class="fas fa-arrow-left"></i></a>
-                        </div>
-                    </div>
+
+    <div class="d-flex justify-content-center border-bottom">
+        <div class="p-3">
+            <div class="progresses">
+                <div class="steps">
+                    <span> 1</span>
                 </div>
-                <div class="card-body">
-                    <h3>Step 1</h3>
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                    <form action="{{ route('phone.store') }}" method="POST" class="needs-validation" novalidate>
-                        @csrf
-                        <div class="row">
-                            <div class="col-md-4 mb-3">
-                                <label for="validationTooltip01">Country code </label>
-                               
-                                <input id="phone" type="text" class="form-control" name="phone"  value="{{ $phone }}" />
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                                check
-                            </button>
-                            </div>
-                          
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">Continue</button>
-
-                    </form>
+                <span class="line bg-secondary"></span>
+                <div class="steps bg-secondary">
+                    <span>2</span>
+                </div>
+                <span class="line bg-secondary"></span>
+                <div class="steps bg-secondary">
+                    <span class="font-weight-bold">3</span>
+                </div>
+                <span class="line bg-secondary"></span>
+                <div class="steps bg-secondary">
+                    <span class="font-weight-bold">4</span>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="row g-0">
+        <div class="col-md-6 border-right p-5">
+            <div class="text-center order-details">
+                <div class="d-flex justify-content-center mb-5 flex-column align-items-center">
+                    <span class="check1"><i class="fa fa-phone"></i></span>
+                    <span class="font-weight-bold">mobile Confirmed</span>
+                    <small class="mt-2">Please enter your mobile number</small>
+                </div>
 
+            </div>
+        </div>
+        <div class="col-md-6 background-muted">
+            <div class="p-3  ">
+                <form action="{{ route('phone.store') }}" method="POST" class="needs-validation" novalidate>
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-8 mb-3">
+                            <label for="validationTooltip01">MOBILE NUMBER </label>
 
+                            <input id="phone" type="text" class="form-control" name="phone"
+                                value="{{ $phone }}" />
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">
+                                check
+                            </button>
+                        </div>
+
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Continue</button>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+     
+ 
+ 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -59,7 +73,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      <input type="number" class="form-control" >
+                        <input type="number" class="form-control">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

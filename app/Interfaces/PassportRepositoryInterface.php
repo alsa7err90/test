@@ -4,6 +4,10 @@ namespace App\Interfaces;
 
 interface PassportRepositoryInterface 
 { 
-    public function store_passport($request);
+    public function storePassport($request);
+    public function storeCompanion($request,$passport);
+    public function storeAccommodation($request);
+    public function storeConfirm();
+    
     
 }

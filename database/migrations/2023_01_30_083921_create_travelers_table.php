@@ -15,6 +15,7 @@ class CreateTravelersTable extends Migration
     {
         Schema::create('travelers', function (Blueprint $table) {
             $table->id();
+            $table->string('email'); 
             $table->string('mobile_no'); 
             $table->string('first_name');
             $table->string('last_name');
@@ -24,8 +25,7 @@ class CreateTravelersTable extends Migration
             $table->string('country_of_residency');
             $table->string('passport_no');
             $table->string('issue_date');
-            $table->string('expiry_date'); 
-            
+            $table->string('expiry_date');  
             $table->string('place_of_issue');
             $table->string('arrival_date');
             $table->string('profession')->nullable();
@@ -36,10 +36,9 @@ class CreateTravelersTable extends Migration
             $table->string('personal_picture');
             $table->enum('companion',['yes','no']);
             $table->enum('status',['pending','processing','completed']);
-            $table->string('note')->nullable();
-             
-            
+            $table->string('note')->nullable(); 
             $table->timestamps();
+            
         });
     }
 

@@ -10,6 +10,7 @@ class Traveler extends Model
     use HasFactory;
     protected $guarded = [];
     protected $fillable = [
+        'email', 
         'mobile_no', 
         'first_name',
         'last_name',

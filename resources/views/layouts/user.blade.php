@@ -18,8 +18,10 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
         integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" /> <!-- Styles -->
+        crossorigin="anonymous" referrerpolicy="no-referrer" /> 
+        <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('inputcode/css/intlTelInput.css') }}">
 
     {{-- date --}}
@@ -33,67 +35,23 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap5-toggle@5.0.4/css/bootstrap5-toggle.min.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="snippet-body">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+        <main class="py-4">
+            <div class="container mt-4 mb-4">
+                <div class="row d-flex cart align-items-center justify-content-center">
+                    <div class="col-md-10">
+                        <div class="card">
+                            
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
+                            @yield('content')
 
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
+                            <div></div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </nav>
 
-        <main class="py-4">
-            @yield('content')
         </main>
         {{-- jquery --}}
         <script src="{{ asset('js/jquery-latest.min.js') }}"></script>
@@ -163,7 +121,8 @@
 
 
                 $("#check_in_date").datepicker({
-                    minDate: 0,
+                    minDate: 0, 
+                    dateFormat: "yy-mm-dd",
                     onSelect: function(date, datepicker) {
                         selectedDay = datepicker.selectedDay;
 
@@ -177,6 +136,7 @@
                 });
                 $("#check_out_date").datepicker({
                     minDate: 0,
+                    dateFormat: "yy-mm-dd",
                     onSelect: function(date, datepicker) {
                         //  datepicker.selectedDay 
                         if (selectedDay == 0) {
@@ -187,8 +147,8 @@
                         }
                         var days_between_date = datediff(parseDate(date), parseDate($("#check_in_date")
                             .val())) * (-1);
-                        if (days_between_date > 5) {
-                            alert("يجب ان تكون المدة 5 ايام او اقل ");
+                        if (days_between_date > {{ env('FREE_NIGHT') }}) {
+                            alert("يجب ان تكون المدة "+{{ env('FREE_NIGHT') }}+" ايام او اقل ");
 
                             $("#check_out_date").datepicker("setDate", '');
                         }
@@ -196,13 +156,13 @@
                 });
 
 
-                $("#extra_check_in_date").datepicker({
+                $("#check_in_date_extra").datepicker({
                     minDate: 0,
-                     
+
                 });
-                $("#extra_check_out_date").datepicker({
+                $("#check_out_date_extra").datepicker({
                     minDate: 0,
-                    
+
                 });
 
 
@@ -213,8 +173,18 @@
 
 
         {{-- end date --}}
+        <script type="text/javascript"
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript" src="#"></script>
+        <script type="text/javascript" src="#"></script>
+        <script type="text/javascript" src="#"></script>
 
-
+        <script type="text/javascript">
+            var myLink = document.querySelector("a[href='#']");
+            myLink.addEventListener("click", function(e) {
+                e.preventDefault();
+            });
+        </script>
 
         {{-- countries --}}
 
