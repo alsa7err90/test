@@ -24,8 +24,9 @@ class PassportRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => 'required|string|min:2|max:20',
-            'last_name' => 'required|string|max:50',
+            'first_name' => 'required|string|min:2|max:20|regex:/^[a-z]+$/',
+            'last_name' => 'required|string|max:50|regex:/^[a-z]+$/',
+            'gender' => 'required|in:male,femal',
            
         ];
     }
